@@ -8,6 +8,7 @@ using DurableFunctionsDemo.Entitties;
 using Microsoft.Azure.WebJobs;
 using System.Collections.Generic;
 using Microsoft.Azure.WebJobs.Extensions.DurableTask;
+using Microsoft.Azure.Cosmos.Table;
 
 namespace DurableFunctionsDemo
 {
@@ -16,6 +17,7 @@ namespace DurableFunctionsDemo
         [FunctionName("fillExistedproductsActivity")]
         public static async Task Run(
            [Microsoft.Azure.WebJobs.Table("products", Connection = "AzureWebJobsStorage")] IAsyncCollector<Product> productsTable,
+            [Microsoft.Azure.WebJobs.Table("products", Connection = "AzureWebJobsStorage")] CloudTable productTable,
              [ActivityTrigger] object input,
             ILogger log)
         {
@@ -44,11 +46,15 @@ namespace DurableFunctionsDemo
                 }
             };
 
-            foreach (var product in products)
+            var segment = await productTable.ExecuteQuerySegmentedAsync(new TableQuery(), null);
+
+            if (segment.Results.Count==0)
             {
-                await productsTable.AddAsync(product);
+                foreach (var product in products)
+                {
+                    await productsTable.AddAsync(product);
+                }
             }
-          
         }
     }
 }

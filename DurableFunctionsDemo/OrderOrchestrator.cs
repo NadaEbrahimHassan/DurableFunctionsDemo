@@ -21,7 +21,8 @@ namespace DurableFunctionsDemo
             ILogger log)
         {
             var submittedOrder = ctx.GetInput<Order>();
-            
+          
+            await ctx.CallActivityAsync("fillExistedproductsActivity", null);
             var selectedProduct = await ctx.CallActivityAsync<Product>("processOrder", submittedOrder);
             var canShipOrder = await ctx.CallActivityAsync<bool>("shipOrder", selectedProduct);
 

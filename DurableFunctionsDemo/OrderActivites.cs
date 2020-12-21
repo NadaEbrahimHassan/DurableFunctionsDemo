@@ -18,7 +18,7 @@ namespace DurableFunctionsDemo
     public static class OrderActivites
     {
         [FunctionName("processOrder")]
-        public static async Task<object> Run(
+        public static async Task<Product> Run(
           [Table("products", Connection = "AzureWebJobsStorage")] CloudTable productTable,
           [ActivityTrigger] Order input, 
             ILogger log)
