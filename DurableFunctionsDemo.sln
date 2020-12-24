@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DurableFunctionsDemo", "DurableFunctionsDemo\DurableFunctionsDemo.csproj", "{DDC8270D-9C41-4910-BBAA-67EB3341C6D6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{05F10316-AC09-45B2-9328-EECBCEE047F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repositories", "Repositories\Repositories.csproj", "{55463D89-CFDE-4FE1-B0A9-6A6F7479501C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{DDC8270D-9C41-4910-BBAA-67EB3341C6D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DDC8270D-9C41-4910-BBAA-67EB3341C6D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DDC8270D-9C41-4910-BBAA-67EB3341C6D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05F10316-AC09-45B2-9328-EECBCEE047F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05F10316-AC09-45B2-9328-EECBCEE047F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05F10316-AC09-45B2-9328-EECBCEE047F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05F10316-AC09-45B2-9328-EECBCEE047F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55463D89-CFDE-4FE1-B0A9-6A6F7479501C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55463D89-CFDE-4FE1-B0A9-6A6F7479501C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55463D89-CFDE-4FE1-B0A9-6A6F7479501C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55463D89-CFDE-4FE1-B0A9-6A6F7479501C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

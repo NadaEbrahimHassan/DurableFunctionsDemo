@@ -23,10 +23,10 @@ namespace DurableFunctionsDemo
             log.LogInformation("C# HTTP trigger function processed a request.");
 
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            var data = JsonConvert.DeserializeObject<Order>(requestBody);
+            var data = JsonConvert.DeserializeObject<OrderModel>(requestBody);
 
           
-            if (data is Order order)
+            if (data is OrderModel order)
             {
                 string orchestrationId = await starter.StartNewAsync("OrderOrchestrator", order);
                 return starter.CreateCheckStatusResponse(req, orchestrationId);
