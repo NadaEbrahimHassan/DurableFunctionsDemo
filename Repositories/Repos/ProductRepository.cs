@@ -4,6 +4,7 @@ using Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Repositories.Repos
 {
@@ -14,6 +15,17 @@ namespace Repositories.Repos
         {
             _context = context;
         }
+
+        public async Task<List<Product>> GetAllProducts()
+        {
+            return await Get();
+        }
+
+        public Product GetProductById(int id)
+        {
+            return Get(id);
+        }
+
         public void UpdateProduct(Product product)
         {
             Update(product);
