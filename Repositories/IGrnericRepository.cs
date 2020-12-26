@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 
 namespace Repositories
 {
-    interface IGrnericRepository<T>
+    public interface IGrnericRepository<T>
     {
-        public Task<List<T>> Get();
-        public T Get(int Id);
-        public void Add(T item);
-        public void Update(T entity);
-        public void Delete(int Id);
-        public void Save();
+         Task<List<T>> Get();
+         T Get(int Id);
+         void Add(T item);
+         void Update(T entity);
+         void Delete(int Id);
+         void Save();
     }
 }

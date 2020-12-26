@@ -7,6 +7,6 @@ namespace Repositories.Interfaces
 {
     public interface IProductRepository
     {
-        public void UpdateProduct(Product product);
+         void UpdateProduct(Product product);
     }
 }

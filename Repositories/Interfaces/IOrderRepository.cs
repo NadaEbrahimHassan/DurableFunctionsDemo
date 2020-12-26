@@ -7,6 +7,6 @@ namespace Repositories.Interfaces
 {
    public interface IOrderRepository
     {
-        public void AddOrder(Order order);
+        void AddOrder(Order order);
     }
 }

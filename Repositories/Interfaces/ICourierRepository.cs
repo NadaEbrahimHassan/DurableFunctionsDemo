@@ -7,6 +7,6 @@ namespace Repositories.Interfaces
 {
    public interface ICourierRepository
     {
-        public void UpdateCourier(Courier courier);
+        void UpdateCourier(Courier courier);
     }
 }

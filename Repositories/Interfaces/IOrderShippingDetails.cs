@@ -7,7 +7,7 @@ namespace Repositories.Interfaces
 {
    public interface IOrderShippingDetails
     {
-        public void AddOrderShippingDetails(OrderShippingDetails orderShippingDetails);
-        public void UpdateOrderShipping(OrderShippingDetails orderShippingDetails);
+         void AddOrderShippingDetails(OrderShippingDetails orderShippingDetails);
+         void UpdateOrderShipping(OrderShippingDetails orderShippingDetails);
     }
 }
