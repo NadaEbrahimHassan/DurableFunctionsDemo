@@ -8,7 +8,7 @@ namespace Repositories
     public interface IGrnericRepository<T>
     {
          Task<List<T>> Get();
-         T Get(int Id);
+         Task<T> Get(int Id);
          void Add(T item);
          void Update(T entity);
          void Delete(int Id);

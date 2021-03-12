@@ -21,9 +21,9 @@ namespace Repositories.Repos
             return await Get();
         }
 
-        public Product GetProductById(int id)
+        public async Task<Product> GetProductById(int id)
         {
-            return Get(id);
+            return await Get(id);
         }
 
         public void UpdateProduct(Product product)

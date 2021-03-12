@@ -2,30 +2,31 @@ using System.Threading.Tasks;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
 using Microsoft.Azure.WebJobs.Extensions.DurableTask;
+using Services.Interfaces;
+using DurableFunctionsDemo.Models;
+using Core.Models;
 
 namespace DurableFunctionsDemo
 {
-    public static class ShipOrderActivity
+    public  class ShipOrderActivity
     {
 
-        [FunctionName("shipOrder")]
-        public static async Task<bool> Run(
-        [ActivityTrigger] object product,
+        private ICourierService _courierService;
+        public ShipOrderActivity(ICourierService courierService)
+        {
+            _courierService = courierService;
+        }
+
+        [FunctionName("processShipping")]
+        public  async Task<CourierModel> Run(
+        [ActivityTrigger] object input,
            ILogger log)
         {
+            var courier= await _courierService.PickAvaliableCourier();
+            if (courier!= null)
+                await _courierService.UpdateCourierAvability(courier.Id, true);
 
-            if (product== null)
-            {
-               
-                log.LogInformation("canceled");
-                return false;
-            }
-            else
-            {
-                log.LogInformation("shipping in progess");
-                return true;
-            }
-          
+            return courier;
         }
     }
 }

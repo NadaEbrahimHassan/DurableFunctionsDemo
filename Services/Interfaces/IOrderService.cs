@@ -9,5 +9,6 @@ namespace Services.Interfaces
    public interface IOrderService
     {
         Task<bool> AddNewOrder(OrderModel orderModel);
+        Task<OrderModel> AddNewOrderWithIdentity(OrderModel orderModel);
     }
 }

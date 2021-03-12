@@ -9,7 +9,7 @@ namespace Repositories.Interfaces
    public interface ICourierRepository
     {
         Task<List<Courier>> GetAllCouriers();
-        Courier GetCourierById(int id);
+        Task<Courier> GetCourierById(int id);
         void UpdateCourier(Courier courier);
     }
 }

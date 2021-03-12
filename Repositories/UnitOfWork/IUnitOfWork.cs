@@ -15,6 +15,6 @@ namespace Repositories.UnitOfWork
 
         void save();
 
-        Task SaveAsync();
+        Task<int> SaveAsync();
     }
 }

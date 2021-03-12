@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Core.Models;
+using Data.Entities;
 using Repositories.UnitOfWork;
 using Services.Interfaces;
 using System;
@@ -13,19 +14,23 @@ namespace Services
     {
         private IUnitOfWork _unitOfWork;
         private IMapper _mapper;
-        public OrderShippingDetailsService(UnitOfWork unitOfWork, IMapper mapper)
+        public OrderShippingDetailsService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-        public Task<bool> addOrderShipping(OrderShippingDetailsModel ordershippingDetailsModel)
+        public async Task<bool> addOrderShipping(OrderShippingDetailsModel ordershippingDetailsModel)
         {
-            throw new NotImplementedException();
+            var entity = _mapper.Map<OrderShippingDetailsModel, OrderShippingDetails>(ordershippingDetailsModel);
+            _unitOfWork.OrderShippingDetails.AddOrderShippingDetails(entity);
+            return (await _unitOfWork.SaveAsync()) > 0;
         }
 
-        public Task<bool> UpdateOrderShipping(OrderShippingDetailsModel ordershippingDetailsModel)
+        public async Task<bool> UpdateOrderShipping(OrderShippingDetailsModel ordershippingDetailsModel)
         {
-            throw new NotImplementedException();
+            var entity = _mapper.Map<OrderShippingDetailsModel, OrderShippingDetails>(ordershippingDetailsModel);
+            _unitOfWork.OrderShippingDetails.AddOrderShippingDetails(entity);
+            return (await _unitOfWork.SaveAsync()) > 0;
         }
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Repositories.Repos
 {
-    class CourierRepository: GenericRepository<Courier>, ICourierRepository
+   public class CourierRepository: GenericRepository<Courier>, ICourierRepository
     {
         private DbContext _context;
         public CourierRepository(DbContext context) : base(context)
@@ -21,7 +21,7 @@ namespace Repositories.Repos
             return await Get();
         }
 
-        public Courier GetCourierById(int id)
+        public Task<Courier> GetCourierById(int id)
         {
             return Get(id);
         }

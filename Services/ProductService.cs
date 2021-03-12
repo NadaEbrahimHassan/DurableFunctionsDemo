@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Core.Models;
+using Data.Entities;
 using Repositories.UnitOfWork;
 using Services.Interfaces;
 using System;
@@ -13,19 +14,20 @@ namespace Services
     {
         private IUnitOfWork _unitOfWork;
         private IMapper _mapper;
-        public ProductService(UnitOfWork unitOfWork, IMapper mapper)
+        public ProductService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-        public Task<List<ProductModel>> GetAllProducts()
+        public  async Task<List<ProductModel>> GetAllProducts()
         {
-            throw new NotImplementedException();
+           var products= await _unitOfWork.ProductRepository.GetAllProducts();
+            return _mapper.Map<List<Product>, List<ProductModel>>(products);
         }
 
-        public Task<int> GetProductQuntity(int productId)
+        public async Task<int> GetProductQuntity(int productId)
         {
-            throw new NotImplementedException();
+            return  (await _unitOfWork.ProductRepository.GetProductById(productId))?.Quntity ?? 0;
         }
     }
 }

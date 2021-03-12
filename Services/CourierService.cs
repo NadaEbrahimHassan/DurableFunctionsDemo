@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using Core.Models;
+using Data.Entities;
 using Repositories.UnitOfWork;
 using Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,30 +16,36 @@ namespace Services
         private IUnitOfWork _unitOfWork;
         private IMapper _mapper;
 
-        public CourierService(UnitOfWork unitOfWork, IMapper mapper)
+        public CourierService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
 
-        public Task<List<CourierModel>> GetAllCouriers()
+        public async Task<List<CourierModel>> GetAllCouriers()
         {
-            throw new NotImplementedException();
+            var couriersEntities = await _unitOfWork.CourierRepository.GetAllCouriers();
+            return _mapper.Map<List<Courier>, List<CourierModel>>(couriersEntities);
         }
 
-        public Task<List<CourierModel>> GetAvaliableCouriers()
+        public async Task<List<CourierModel>> GetAvaliableCouriers()
         {
-            throw new NotImplementedException();
+            var couriersEntities= (await _unitOfWork.CourierRepository.GetAllCouriers()).Where(c => c.IsAvaliable).ToList();
+            return _mapper.Map<List<Courier>, List<CourierModel>>(couriersEntities);
         }
 
-        public Task<CourierModel> PickAvaliableCourier()
+        public async Task<CourierModel> PickAvaliableCourier()
         {
-            throw new NotImplementedException();
+            var entity = (await _unitOfWork.CourierRepository.GetAllCouriers()).FirstOrDefault(c => c.IsAvaliable);
+            return _mapper.Map<Courier, CourierModel>(entity);
         }
 
-        public Task<bool> UpdateCourierAvability(int courierid, bool isAvaliable)
+        public async Task<bool> UpdateCourierAvability(int courierid, bool isAvaliable)
         {
-            throw new NotImplementedException();
+            var courier = await _unitOfWork.CourierRepository.GetCourierById(courierid);
+            courier.IsAvaliable = isAvaliable;
+            _unitOfWork.CourierRepository.UpdateCourier(courier);
+            return (await _unitOfWork.SaveAsync()) > 0;
         }
     }
 }

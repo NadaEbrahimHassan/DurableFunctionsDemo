@@ -28,9 +28,9 @@ namespace Repositories
             return await _context.Set<T>().ToListAsync();
         }
 
-        public  T Get(int Id)
+        public  async Task<T> Get(int Id)
         {
-           return  _context.Set<T>().Find(Id);
+           return   _context.Set<T>().Find(Id);
         }
 
         public void Save()
