@@ -16,7 +16,7 @@ namespace DurableFunctionsDemo
         {
             var submittedOrder = ctx.GetInput<OrderModel>();
 
-            //var selectedProduct = await ctx.CallActivityAsync("processOrder", submittedOrder);
+            await ctx.CallActivityAsync("processOrder", submittedOrder);
             //var canShipOrder = await ctx.CallActivityAsync<bool>("shipOrder", selectedProduct);
 
             //  return canShipOrder ? " Order recived " : "order canceled";

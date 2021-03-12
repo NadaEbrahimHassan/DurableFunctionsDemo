@@ -6,6 +6,11 @@ namespace Data
 {
     public class OnlineShoppingContext:DbContext
     {
+
+        //public OnlineShoppingContext(DbContextOptions<OnlineShoppingContext> options) : base(options)
+        //{
+
+        //}
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Courier> Couriers { get; set; }
@@ -13,7 +18,7 @@ namespace Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-          
+            optionsBuilder.UseSqlServer("Data Source =.\\Nada2016;initial catalog = onlineShopping;User ID = SDAssignmentAdmin;Password = 123456");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
